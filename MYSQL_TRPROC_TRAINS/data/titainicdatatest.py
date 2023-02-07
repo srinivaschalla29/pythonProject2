@@ -1,0 +1,13 @@
+import pandas as pd
+df=pd.read_csv('..//data//tested.csv')
+print(df.shape)
+df.drop(['Cabin'],axis=1,inplace=True)
+#print(df.isna().any)
+df.fillna(method='ffill',inplace=True)
+#print(df.isna().sum())
+print(df['Embarked'])
+print(df.groupby(['Sex','Survived'])['Survived'].count)
+#print(pd.pivot_table(df,index=df['Sex','Age']aggfunc=np.sum))
+print(df.sort_values(by=['Pclass','Age'],ascending=False))
+df['Survived']=df["Survived"].apply(lambda val:'yes' if val==1 else'No')
+print(df)
